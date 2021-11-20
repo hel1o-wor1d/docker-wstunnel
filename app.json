@@ -1,0 +1,9 @@
+{
+  "name": "nginx-wstunnel",
+  "description": "nginx-wstunnel",
+  "keywords": ["Ubuntu", "Docker", "wstunnel"],
+  "env": {},
+  "website": "",
+  "repository": "",
+  "stack": "container"
+}
