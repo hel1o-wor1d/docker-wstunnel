@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 # heroku
-if [ $PORT ];then
+if [ "$PORT" != "" ]; then
 cat << EOF > /etc/nginx/sites-enabled/wstunnel
 server {
 	listen $PORT;

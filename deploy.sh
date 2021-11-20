@@ -45,6 +45,7 @@ server {
     }
 }
 EOF
+rm -f /etc/nginx/sites-enabled/default
 
 apt-get install -y supervisor
 cat << "EOF" > /etc/supervisor/conf.d/sshd.conf
