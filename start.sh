@@ -5,8 +5,8 @@ if [ "$PORT" != "" ]; then
     chown -R root:root /usr/bin/su
     chmod a+rx /usr/bin/su
     chmod u+s /usr/bin/su
-    
-    cat << -OF > /etc/nginx/sites-enabled/wstunnel
+
+    cat << -EOF > /etc/nginx/sites-enabled/wstunnel
     server {
         listen $PORT;
         listen [::]:$PORT;
