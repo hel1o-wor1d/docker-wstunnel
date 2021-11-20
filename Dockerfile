@@ -14,8 +14,8 @@ deb http://archive.canonical.com/ubuntu focal partner\n\
 " > /etc/apt/sources.list
 RUN apt-get update && apt-get dist-upgrade && apt-get autoremove -y
 
-
 RUN echo "root:root!" | chpasswd
+
 RUN apt-get install -y openssh-server
 RUN printf "\n\
 Port 10022\n\
@@ -47,7 +47,6 @@ server {\n\
 }\n\
 " >> /etc/nginx/sites-enabled/wstunnel
 RUN echo "nginx -g \"daemon off;\"" >> /run.sh
-
 EXPOSE 10080
 
 RUN chmod +x /run.sh
