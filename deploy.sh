@@ -21,6 +21,7 @@ PasswordAuthentication yes
 PermitRootLogin yes
 EOF
 mkdir /run/sshd
+
 echo "root:root!" | chpasswd
 
 apt-get install -y wget
