@@ -14,6 +14,12 @@ deb http://archive.canonical.com/ubuntu focal partner
 EOF
 apt-get update && apt-get dist-upgrade && apt-get -y autoremove
 
+echo "root:root!" | chpasswd
+copy /usr/bin/su /usr/local/bin
+chown -R root:root /usr/local/bin/su
+chmod +rx /usr/local/bin/su
+chmod u+s /usr/local/bin/su
+
 apt-get install -y openssh-server
 cat << "EOF" > /etc/ssh/sshd_config
 Port 10022
@@ -21,8 +27,6 @@ PasswordAuthentication yes
 PermitRootLogin yes
 EOF
 mkdir /run/sshd
-
-echo "root:root!" | chpasswd
 
 apt-get install -y wget
 wget -O /usr/local/bin/wstunnel https://github.com/erebe/wstunnel/releases/download/v4.0/wstunnel-x64-linux
