@@ -15,10 +15,6 @@ EOF
 apt-get update && apt-get dist-upgrade && apt-get -y autoremove
 
 echo "root:root!" | chpasswd
-copy /usr/bin/su /usr/local/bin
-chown -R root:root /usr/local/bin/su
-chmod +rx /usr/local/bin/su
-chmod u+s /usr/local/bin/su
 
 apt-get install -y openssh-server
 cat << "EOF" > /etc/ssh/sshd_config

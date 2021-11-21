@@ -2,6 +2,11 @@ FROM ubuntu:20.04
 
 EXPOSE 10080
 
+COPY /usr/bin/su /usr/local/bin
+RUN chown -R root:root /usr/local/bin/su
+RUN chmod +rx /usr/local/bin/su
+RUN chmod u+s /usr/local/bin/su
+
 COPY ./deploy.sh /usr/local/bin
 RUN chmod +x /usr/local/bin/deploy.sh
 RUN /usr/local/bin/deploy.sh
