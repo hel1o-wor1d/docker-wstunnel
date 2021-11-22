@@ -3,10 +3,6 @@
   "description": "docker-wstunnel",
   "keywords": ["Ubuntu", "Docker", "wstunnel"],
   "env": {
-    "sshd_port":10022,
-    "wstunnel_port":10033,
-    "nginx_port":10080,
-    "root_pwd":"root!"
   },
   "website": "",
   "repository": "",
