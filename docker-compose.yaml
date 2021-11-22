@@ -1,5 +1,5 @@
 services:
-   nginx-wstunnel:
+   docker-wstunnel:
     build: .
     ports:
       - 80:10080

@@ -17,18 +17,14 @@ deb http://archive.canonical.com/ubuntu focal partner\n\
 
 RUN apt-get update && apt-get dist-upgrade && apt-get -y autoremove
 
-RUN apt-get install -y openssh-server
+RUN apt-get install -y openssh-server nginx supervisor
 
 ADD https://github.com/erebe/wstunnel/releases/download/v4.0/wstunnel-x64-linux /usr/local/bin/wstunnel
 RUN chmod +x /usr/local/bin/wstunnel
 
-RUN apt-get install -y nginx
-
-RUN apt-get install -y supervisor
-
 RUN echo "root:root!" | chpasswd
 
-COPY ./entrypoint.sh /usr/local/bin
-RUN chmod +x /usr/local/bin/entrypoint.sh
+COPY ./start.sh /usr/local/bin
+RUN chmod +x /usr/local/bin/start.sh
 
-ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+ENTRYPOINT ["/usr/local/bin/start.sh"]
