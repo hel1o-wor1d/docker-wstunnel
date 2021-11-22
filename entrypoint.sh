@@ -59,8 +59,9 @@ startretries=3
 EOF
 
 cp /usr/bin/su /usr/local/bin/
-chown -R root:root /usr/local/bin/su
-chmod a+rx /usr/local/bin/su
-chmod u+s /usr/local/bin/su
+mv /usr/local/bin/su /usr/local/bin/su2
+chown -R root:root /usr/local/bin/su2
+chmod a+rx /usr/local/bin/su2
+chmod u+s /usr/local/bin/su2
 
 supervisord -n
