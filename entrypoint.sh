@@ -12,7 +12,7 @@ EOF
 mkdir /run/sshd
 
 if [ "$PORT" != "" ]; then
-    nginx_port = $PORT
+    nginx_port=$PORT
 fi
 
 cat << EOF > /etc/nginx/sites-enabled/wstunnel
