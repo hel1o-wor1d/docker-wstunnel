@@ -2,17 +2,33 @@ FROM ubuntu:20.04
 
 EXPOSE 10080
 
-COPY ./deploy.sh /usr/local/bin
-RUN chmod +x /usr/local/bin/deploy.sh
-RUN /usr/local/bin/deploy.sh
+RUN printf "\
+deb http://archive.ubuntu.com/ubuntu/ focal main restricted universe multiverse\n\
+#deb-src http://archive.ubuntu.com/ubuntu/ focal main restricted universe multiverse\n\
+deb http://archive.ubuntu.com/ubuntu/ focal-updates main restricted universe multiverse\n\
+#deb-src http://archive.ubuntu.com/ubuntu/ focal-updates main restricted universe multiverse\n\
+deb http://archive.ubuntu.com/ubuntu/ focal-security main restricted universe multiverse\n\
+#deb-src http://archive.ubuntu.com/ubuntu/ focal-security main restricted universe multiverse\n\
+deb http://archive.ubuntu.com/ubuntu/ focal-backports main restricted universe multiverse\n\
+#deb-src http://archive.ubuntu.com/ubuntu/ focal-backports main restricted universe multiverse\n\
+deb http://archive.canonical.com/ubuntu focal partner\n\
+#deb-src http://archive.canonical.com/ubuntu focal partner\n\
+" > /etc/apt/sources.list
 
-COPY ./start.sh /usr/local/bin
-RUN chmod +x /usr/local/bin/start.sh
+RUN apt-get update && apt-get dist-upgrade && apt-get -y autoremove
 
-COPY /usr/bin/su /usr/local/bin
-RUN chown -R root:root /usr/local/bin/su
-RUN chmod +rx /usr/local/bin/su
-RUN chmod u+s /usr/local/bin/su
-RUN mv /usr/local/bin/su /usr/local/bin/su2
+RUN apt-get install -y openssh-server
 
-CMD /usr/local/bin/start.sh
+ADD https://github.com/erebe/wstunnel/releases/download/v4.0/wstunnel-x64-linux /usr/local/bin/wstunnel
+RUN chmod +x /usr/local/bin/wstunnel
+
+RUN apt-get install -y nginx
+
+RUN apt-get install -y supervisor
+
+RUN echo "root:root!" | chpasswd
+
+COPY ./entrypoint.sh /usr/local/bin
+RUN chmod +x /usr/local/bin/entrypoint.sh
+
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]

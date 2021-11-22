@@ -1,6 +1,6 @@
 {
-  "name": "nginx-wstunnel",
-  "description": "nginx-wstunnel",
+  "name": "docker-wstunnel",
+  "description": "docker-wstunnel",
   "keywords": ["Ubuntu", "Docker", "wstunnel"],
   "env": {},
   "website": "",
