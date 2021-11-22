@@ -11,9 +11,7 @@ PermitRootLogin yes
 EOF
 mkdir /run/sshd
 
-nginx_port=10080
-if [ "$PORT" != "" ]
-then
+if [ "$PORT" != "" ]; then
     nginx_port = $PORT
 fi
 
