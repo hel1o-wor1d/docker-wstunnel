@@ -5,7 +5,7 @@ wstunnel_port=10033
 nginx_port=10080
 root_pwd=root!
 
-cat << EOF > /etc/ssh/sshd_config.d/wstunnel.config
+cat << EOF > /etc/ssh/sshd_config.d/wstunnel.conf
 Port $sshd_port
 PasswordAuthentication yes
 PermitRootLogin yes
