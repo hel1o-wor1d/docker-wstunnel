@@ -1,4 +1,4 @@
-#! sh
+#!/usr/bin/env sh
 
 sshd_port=10022
 wstunnel_port=10033
@@ -47,7 +47,7 @@ startretries=3
 EOF
 cat << EOF > /etc/supervisor/conf.d/wstunnel.conf
 [program:wstunnel]
-command=wstunnel --server ws://0.0.0.0:$wstunnel_port
+command=wstunnel --server ws://0.0.0.0:$wstunnel_port --websocketPingFrequencySec 10
 autostart=true
 startsecs=3
 autorestart=true
