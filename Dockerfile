@@ -1,5 +1,8 @@
 FROM ubuntu:20.04
 
+ENV DEBIAN_FRONTEND=noninteractive
+ENV TZ=Asia/Shanghai
+
 EXPOSE 10080
 
 RUN printf "\
@@ -27,4 +30,4 @@ RUN echo "root:root!" | chpasswd
 COPY ./start.sh /usr/local/bin
 RUN chmod +x /usr/local/bin/start.sh
 
-CMD ["/usr/local/bin/start.sh"]
+ENTRYPOINT ["/usr/local/bin/start.sh"]

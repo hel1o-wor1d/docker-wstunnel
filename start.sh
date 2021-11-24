@@ -1,10 +1,15 @@
-#!/usr/bin/env sh
+#! sh
 
 sshd_port=10022
 wstunnel_port=10033
 nginx_port=10080
 root_pwd=root!
 
+if [ "$PORT" != "" ]; then
+    nginx_port=$PORT
+fi
+
+# sshd
 cat << EOF > /etc/ssh/sshd_config.d/wstunnel.conf
 Port $sshd_port
 PasswordAuthentication yes
@@ -12,9 +17,7 @@ PermitRootLogin yes
 EOF
 mkdir /run/sshd
 
-if [ "$PORT" != "" ]; then
-    nginx_port=$PORT
-fi
+# nginx
 cat << EOF > /etc/nginx/sites-enabled/wstunnel
 server {
 	listen $nginx_port;
@@ -33,6 +36,7 @@ server {
 EOF
 rm -f /etc/nginx/sites-enabled/default
 
+#supervisor
 cat << "EOF" > /etc/supervisor/conf.d/sshd.conf
 [program:sshd]
 command=/usr/sbin/sshd -D
