@@ -25,6 +25,8 @@ RUN apt-get install -y bash netcat nginx supervisor
 ADD https://github.com/erebe/wstunnel/releases/download/v4.0/wstunnel-x64-linux /usr/local/bin/wstunnel
 RUN chmod +x /usr/local/bin/wstunnel
 
+RUN echo "root:root!" | chpasswd
+
 ADD ./start.sh /usr/local/bin/start.sh
 ADD ./mync.sh /usr/local/bin/mync.sh
 RUN chmod +x /usr/local/bin/start.sh
