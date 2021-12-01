@@ -1,6 +1,6 @@
-# Ubuntu Docker image with nginx wstunnel sshd
+# Ubuntu Docker image with nginx wstunnel netcat
 
-Use supervisor manage nginx wstunnel(https://github.com/erebe/wstunnel) and sshd.
+Use supervisor manage nginx wstunnel(https://github.com/erebe/wstunnel) and netcat.
 
 root password: root!
 
@@ -10,7 +10,8 @@ Example:
     wstunnel -L 1111:127.0.0.1:10022 ws://server --upgradePathPrefix wstunnel
 
     #client
-    ssh -p 1111 root@localhost
+    nc 127.0.0.1 12345
+    ls
 
 SSH can not work on heroku
 
