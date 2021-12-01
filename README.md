@@ -6,10 +6,8 @@ root password: root!
 
 Example:
 
-    #server
     wstunnel -L 12345:127.0.0.1:10022 ws://server --upgradePathPrefix wstunnel
 
-    #client
     nc 127.0.0.1 12345
     ls
 
